@@ -1,9 +1,12 @@
+Sys.setenv(R_LIBS_SITE = "/home/.hub_local/R_libs")
+Sys.setenv("CXXFLAGS" = "-Wno-format-security")
 # create user R library
 if(!dir.exists(Sys.getenv("R_LIBS_USER"))) {
   dir.create(path = Sys.getenv("R_LIBS_USER"), recursive = TRUE)
 }
 
 # make user R library the default
+.libPaths(c(Sys.getenv("R_LIBS_SITE"), .libPaths()))
 .libPaths(c(Sys.getenv("R_LIBS_USER"), .libPaths()))
 
 # fix github install issues (https://github.com/conda-forge/r-devtools-feedstock/issues/4)
